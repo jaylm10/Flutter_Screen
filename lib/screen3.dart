@@ -304,72 +304,80 @@ class _Screen3State extends State<Screen3> {
   }
 
   Widget card(int index, String img, String day, String city) {
-    bool isExpanded = expandedIndex == index;
+    // bool isExpanded = expandedIndex == index;
 
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          expandedIndex = isExpanded ? -1 : index;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Column(
-          children: [
-            
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(img, height: 60),
-                    ),
-                    const SizedBox(width: 15),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          day,
-                          style: TextStyle(color: Colors.grey.shade500),
-                        ),
-                        Text(
-                          city,
-                          style: const TextStyle(fontWeight: FontWeight.w500),
-                        ),
-                        const Text(
-                          "Highlights",
-                          style: TextStyle(fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-
-                Icon(
-                  isExpanded
-                      ? Icons.keyboard_arrow_up
-                      : Icons.keyboard_arrow_down_outlined,
-                ),
-              ],
-            ),
-
-            
-            if (isExpanded)
-              const Padding(
-                padding: EdgeInsets.only(top: 12),
-                child: Text(
-                  "Visit famous attractions, enjoy local food and explore the culture of the city.",
-                ),
-              ),
-          ],
-        ),
-      ),
+    return ExpansionTile(
+      leading: Image.network(img),
+      title: Text(day),
+      subtitle: Text(city),
+      children: [
+        ListTile(title: Text('Description of the day itinerary'),),
+      ],
     );
+
+    // return GestureDetector(
+    //   onTap: () {
+    //     setState(() {
+    //       expandedIndex = isExpanded ? -1 : index;
+    //     });
+    //   },
+    //   child: Container(
+    //     padding: const EdgeInsets.all(12),
+    //     decoration: BoxDecoration(
+    //       border: Border.all(color: Colors.black),
+    //       borderRadius: BorderRadius.circular(10),
+    //     ),
+    //     child: Column(
+    //       children: [
+
+    //         Row(
+    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //           children: [
+    //             Row(
+    //               children: [
+    //                 ClipRRect(
+    //                   borderRadius: BorderRadius.circular(10),
+    //                   child: Image.network(img, height: 60),
+    //                 ),
+    //                 const SizedBox(width: 15),
+    //                 Column(
+    //                   crossAxisAlignment: CrossAxisAlignment.start,
+    //                   children: [
+    //                     Text(
+    //                       day,
+    //                       style: TextStyle(color: Colors.grey.shade500),
+    //                     ),
+    //                     Text(
+    //                       city,
+    //                       style: const TextStyle(fontWeight: FontWeight.w500),
+    //                     ),
+    //                     const Text(
+    //                       "Highlights",
+    //                       style: TextStyle(fontWeight: FontWeight.w500),
+    //                     ),
+    //                   ],
+    //                 ),
+    //               ],
+    //             ),
+
+    //             Icon(
+    //               isExpanded
+    //                   ? Icons.keyboard_arrow_up
+    //                   : Icons.keyboard_arrow_down_outlined,
+    //             ),
+    //           ],
+    //         ),
+
+    //         if (isExpanded)
+    //           const Padding(
+    //             padding: EdgeInsets.only(top: 12),
+    //             child: Text(
+    //               "Visit famous attractions, enjoy local food and explore the culture of the city.",
+    //             ),
+    //           ),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }
